@@ -4,7 +4,7 @@ from .models import Article
 
 
 def all_articles(request):
-    article = Article.objects.all()
+    article = Article.publish_filter.all() # use customize manager
     return render(request, 'blog/all_articles.html', {'all_articles': article,})
 
 

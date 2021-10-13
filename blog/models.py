@@ -5,6 +5,12 @@ from django.contrib.auth.models import User
 
 
 
+class PublishedArticleManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status='publish')
+
+
+
 class Article(models.Model):
     STATUS = (
         ('draft', 'Draft'),
@@ -19,6 +25,10 @@ class Article(models.Model):
     published = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20, choices=STATUS, default='draft')
+    
+    # customize Manager
+    objects = models.Manager() # active default manager
+    publish_filter = PublishedArticleManager() # customize manager
 
 
     def __str__(self):
