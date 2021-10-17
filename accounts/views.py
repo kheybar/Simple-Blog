@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import UserLoginForm, UserRegisterForm
@@ -41,3 +41,10 @@ def user_register(request):
         form = UserRegisterForm()
     
     return render(request, 'accounts/register.html', {'form': form})
+
+
+
+def user_logout(request):
+    logout(request)
+    messages.success(request=request, message='you logout successfully', extra_tags='success')
+    return redirect('blog:all_articles')
