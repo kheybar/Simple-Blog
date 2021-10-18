@@ -2,6 +2,7 @@
 
 {% block content %}
 
+    <!-- --- get--- -->
     <h3>
         {{ article.title }}
     </h3>
@@ -11,6 +12,21 @@
     <p>
         {{ article.body }}
     </p>
+
+
+
+    <!-- --- filter--- -->
+    <!-- {% for i in article %}
+        <h3>
+            {{ i.title }}
+        </h3>
+        <small>
+            {{ i.published }}
+        </small>
+        <p>
+            {{ i.body }}
+        </p>
+    {% endfor %} -->
 
 
 {% endblock %}
