@@ -30,6 +30,7 @@ class UserRegisterForm(forms.Form):
     )
     password_2 = forms.CharField(
         max_length=50,
+        label='confirm password',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'your password'})
     )
 
@@ -44,10 +45,23 @@ class UserRegisterForm(forms.Form):
         return email
 
     
-    def clean_password_2(self):
-        password_1 = self.cleaned_data['password_1']
-        password_2 = self.cleaned_data['password_2']
-        if password_1 != password_2:
-            raise forms.ValidationError('Password must be the same.')
+    # def clean_password_2(self):
+    #     password_1 = self.cleaned_data['password_1']
+    #     password_2 = self.cleaned_data['password_2']
+    #     if password_1 != password_2:
+    #         raise forms.ValidationError('Password must be the same.')
         
-        return password_2
+    #     return password_2
+    
+    
+    # استفاده از این روش برای بررسی پسورد ها یا به عبارتی فیلدهایی که بهم مربوط هستند، درست نیست چرا که روش بهتری وجود داره
+    # باید متود کلین رو آوررایدش کنیم
+    def clean(self):
+        cleaned_data = super().clean() # برای اینکه به کلین دیتا دست پیدا کنیم و کلین پیشفرض ران بشه، اول از سوپر استفاده میکنیم
+        password_1 = cleaned_data.get('password_1') # با استفاده از گت میایم و مقدار رو میکشیم بیرون
+        password_2 = cleaned_data.get('password_2')
+        if password_1 and password_2:
+            if password_1 != password_2:
+                raise forms.ValidationError('Password must be the same.') # این ارور ها میره جز فرم ارور ها نه فیلد ارور ها
+
+        # نیاز به ریترن چیزی نیست
