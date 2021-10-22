@@ -18,7 +18,7 @@ class Article(models.Model):
     )
 
     title = models.CharField(max_length=150, unique=True)
-    slug = models.SlugField(max_length=150, unique=True)
+    slug = models.SlugField(max_length=150, unique=True, allow_unicode=True) # این الوـیونیکد به ما اجازه میده که اسلاگ فارسی رو هم در اپلیکیشن ساپورت کنه
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
