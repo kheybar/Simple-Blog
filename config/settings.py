@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.messages', # نیازی به تیبل دیتابیس ندارد
+    'django.contrib.staticfiles', # نیازی به تیبل دیتابیس ندارد
 
     # Our Application
     'blog.apps.BlogConfig',
@@ -123,6 +123,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# زمانی که فایل های استیتک مربوط به کل اپلیکیشن هست نه یک اپ خاص از این اتربیوت استفاده میکنیم
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), # جنگو به اولین آدرسی که پیدا کرد، همونو لود میکنه و سراغ بقیه نخواهد رفت
+]
+
+
+# Media File: فایل هایی که زمان پروداکشن به پروژه افزوده میشه، می گویند
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
