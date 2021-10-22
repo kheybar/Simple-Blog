@@ -7,6 +7,9 @@
 
             <a href="{{ article.get_absolute_url }}"class="card-body">
                 {{ article.title }}
+                <small style="color:red;">
+                    {{ article.published | date:"j/n/Y, H:i, l" }}
+                </small>
             </a>
             
         {% empty %}

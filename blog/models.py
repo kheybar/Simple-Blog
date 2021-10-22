@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class PublishedArticleManager(models.Manager):
@@ -20,7 +20,7 @@ class Article(models.Model):
     title = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=150, unique=True, allow_unicode=True) # این الوـیونیکد به ما اجازه میده که اسلاگ فارسی رو هم در اپلیکیشن ساپورت کنه
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField()
+    body = RichTextUploadingField(config_name='awesome_ckeditor')
     created = models.DateTimeField(auto_now_add=True)
     published = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)

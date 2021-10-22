@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages', # نیازی به تیبل دیتابیس ندارد
     'django.contrib.staticfiles', # نیازی به تیبل دیتابیس ندارد
+    # ckeditor
+    'ckeditor',
+    'ckeditor_uploader',
 
     # Our Application
     'blog.apps.BlogConfig',
@@ -131,9 +134,22 @@ STATICFILES_DIRS = [
 
 
 # Media File: فایل هایی که زمان پروداکشن به پروژه افزوده میشه، می گویند
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') # آدرسی که قراره فایل های مدیا در اون ذخیره بشوند(ثابت است)
+MEDIA_URL = '/media/' # آدرسی که جنگو از اون برای نمایش فایل ها از اون استفاده میکنه
+
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Ckeditor
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'full',
+    },
+}
+CKEDITOR_UPLOAD_PATH = "uploads/" # Use Media Url and Media Root

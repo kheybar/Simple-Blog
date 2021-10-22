@@ -14,8 +14,11 @@
     <small>
         {{ article.published }}
     </small>
+    <small>
+        day ago: {{ article.published | timesince }}
+    </small>
     <p>
-        {{ article.body }}
+        {{ article.body | safe }}
     </p>
 
 
