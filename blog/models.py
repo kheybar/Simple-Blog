@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
+
 class PublishedArticleManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status='publish')
